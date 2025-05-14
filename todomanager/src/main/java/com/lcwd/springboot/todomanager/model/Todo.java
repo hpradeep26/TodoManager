@@ -1,13 +1,12 @@
 package com.lcwd.springboot.todomanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
 public class Todo {
 
-  private int id;
+    private int id;
     private String title;
 
     private String content;
@@ -17,7 +16,7 @@ public class Todo {
     private Date creationDate;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date toBeCompletionDate;
+    private Date toBeCompleteDate;
 
     public int getId() {
         return id;
@@ -31,13 +30,13 @@ public class Todo {
         return title;
     }
 
-    public Todo(int id, String title, String content, String status, Date creationDate, Date toBeCompletionDate) {
+    public Todo(int id, String title, String content, String status, Date creationDate, Date toBeCompleteDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.status = status;
         this.creationDate = creationDate;
-        this.toBeCompletionDate = toBeCompletionDate;
+        this.toBeCompleteDate = toBeCompleteDate;
     }
 
     public Date getCreationDate() {
@@ -48,12 +47,12 @@ public class Todo {
         this.creationDate = creationDate;
     }
 
-    public Date getToBeCompletionDate() {
-        return toBeCompletionDate;
+    public Date getToBeCompleteDate() {
+        return toBeCompleteDate;
     }
 
-    public void setToBeCompletionDate(Date toBeCompletionDate) {
-        this.toBeCompletionDate = toBeCompletionDate;
+    public void setToBeCompleteDate(Date toBeCompleteDate) {
+        this.toBeCompleteDate = toBeCompleteDate;
     }
 
     public void setTitle(String title) {
@@ -87,6 +86,8 @@ public class Todo {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", status='" + status + '\'' +
+                ", creationDate=" + creationDate +
+                ", toBeCompleteDate=" + toBeCompleteDate +
                 '}';
     }
 }

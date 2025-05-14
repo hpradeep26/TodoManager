@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,16 @@ public class TodoController {
     public ResponseEntity<Todo> deleteTodo(@PathVariable int todoId){
         Todo delete = todoService.delete(todoId);
         return ResponseEntity.status(HttpStatus.OK).body(delete);
+    }
+
+   /* @ExceptionHandler
+    public ResponseEntity<String> nullPointerException(NullPointerException ex){
+        return new ResponseEntity<>("Null pointer Exception "+ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }*/
+
+    @ExceptionHandler(value={NullPointerException.class, NumberFormatException.class})
+    public ResponseEntity<String> exceptionHandler(Exception ex){
+        return new ResponseEntity<>("Exception Occured "+ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
